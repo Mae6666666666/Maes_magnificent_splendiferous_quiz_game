@@ -16,10 +16,10 @@
       "text": "Which picture below is from the music video 'Humility'?",
       "image": null,
       "answers": [
-        { "text": null, "image": "https://example.com/saturnz-barz.jpg", "correct": false },
-        { "text": null, "image": "https://example.com/humility.jpg", "correct": true },
-        { "text": null, "image": "https://example.com/feel-good-inc.jpg", "correct": false },
-        { "text": null, "image": "https://example.com/clint-eastwood.jpg", "correct": false }
+        { "text": "Saturnz Barz", "image": "https://i.ytimg.com/vi/lVaBvyzuypw/maxresdefault.jpg", "correct": false },
+        { "text": "Humility", "image": "https://i.ytimg.com/vi/E5yFcdPAGv0/hqdefault.jpg", "correct": true },
+        { "text": "Clint Eastwood", "image": "https://i.redd.it/just-noticed-this-on-the-clint-eastwood-video-is-it-a-v0-x9vnn09l3fs71.jpg?width=976&format=pjpg&auto=webp&s=55ce20df75b22cfaabe624c1c8efea0bb3d4d16e", "correct": false },
+        { "text": "Feel Good Inc.", "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXrqbkqFOgMSkq0uEBRucTZIxDjY6YKXS-Gw&s", "correct": false }
       ]
     },
     {
