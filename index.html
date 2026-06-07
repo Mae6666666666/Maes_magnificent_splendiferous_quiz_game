@@ -4,23 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
 </head>
-<body>
-    <header>Name of the quiz</header>
-    <h1 id="question">Question</h1>
+<body class="bg-[url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVwVOX33CP_VlJFItU4EiL0CdPOK0q6uPl7g&s)] bg-cover">
+    <header class="bg-zinc-800 h-26">
+        <h1 class="text-white text-5xl font-mono">Name of the quiz</h1>
+    </header>
+    <header class="bg-zinc-700">
+        <h1 id="question" class="text-white font-mono text-2xl">Question</h1>
+    </header>
+    <br>
     <div>
-        <h3>x/y question</h3>
+        <h3 class="text-white font-mono text-right">x/y question</h3>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
 
     <label>
-        <input id="a1" type="submit" name="selection" value="answer 1">
-        <br>
-        <input id="a2" type="submit" name="selection" value="answer 2">
-        <br>
-        <input id="a3" type="submit" name="selection" value="answer 3">
-        <br>
-        <input id="a4" type="submit" name="selection" value="answer 4">
+        <div class="text-center">
+            <input class="text-white font-mono bg-blue-950 text-3xl" id="a1" type="submit" name="selection" value="answer 1">
+            <br>
+            <br>
+            <input class="text-white font-mono bg-blue-950 text-3xl" id="a2" type="submit" name="selection" value="answer 2">
+            <br>
+            <br>
+            <input class="text-white font-mono bg-blue-950 text-3xl" id="a3" type="submit" name="selection" value="answer 3">
+            <br>
+            <br>
+            <input class="text-white font-mono bg-blue-950 text-3xl" id="a4" type="submit" name="selection" value="answer 4">
+        </div>
     </label>
     <script>
         fetch("quiz-questions.json")
