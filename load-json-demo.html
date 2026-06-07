@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load JSON Demo</title>
+</head>
+<body>
+    <h1>Loading data from quiz-questions.json</h1>
+
+    <!-- These two elements start EMPTY. JavaScript fills them in
+         after it reads the JSON file. Each has an id so the JS can find it. -->
+
+    <!-- a single text input -->
+    <input id="questionText" type="text" size="50">
+
+    <br><br>
+
+    <!-- a single image -->
+    <img id="questionImage" alt="question image" width="300">
+
+    <script>
+        // fetch() asks the browser to go get a file (or URL) for us.
+        // It returns a "Promise" - a value that isn't ready yet - so we
+        // chain .then() steps that run once each stage finishes.
+        fetch("quiz-questions.json")
+            // Stage 1: the raw response arrived. Turn its body into JS
+            // objects/arrays by parsing it as JSON. This also returns a Promise.
+            .then(function (response) {
+                return response.json();
+            })
+            // Stage 2: now `data` is the parsed JSON, the same shape as the file:
+            // { questions: [ {id, text, image, answers}, ... ] }
+            .then(function (data) {
+                // Grab the THIRD question (index 2) because it has BOTH
+                // a text and an image, so it fills both elements nicely.
+                var question = data.questions[2];
+
+                // Put the question's text into the input box.
+                // (.value is how you set what an <input> shows.)
+                document.getElementById("questionText").value = question.text;
+
+                // Point the image at the question's image URL.
+                // (.src is the image's address.)
+                document.getElementById("questionImage").src = question.image;
+            })
+            // If anything above fails (e.g. file not found), show why.
+            .catch(function (error) {
+                console.error("Could not load the JSON:", error);
+            });
+    </script>
+</body>
+</html>

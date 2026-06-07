@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>Name of the quiz</header>
+    <h1 id="question">Question</h1>
+    <div>
+        <h3>x/y question</h3>
+    </div>
+    <br>
+
+    <label>
+        <input id="a1" type="submit" name="selection" value="answer 1">
+        <br>
+        <input id="a2" type="submit" name="selection" value="answer 2">
+        <br>
+        <input id="a3" type="submit" name="selection" value="answer 3">
+        <br>
+        <input id="a4" type="submit" name="selection" value="answer 4">
+    </label>
+    <script>
+        fetch("quiz-questions.json")
+        .then(function (response) {
+                return response.json();
+            })
+        .then(function(data){
+            var answer1 = data.questions[2].answers[0];
+            var answer2 = data.questions[2].answers[1];
+            var answer3 = data.questions[2].answers[2];
+            var answer4 = data.questions[2].answers[3];
+            var question = data.questions[2].text;
+        
+        document.getElementById("question").textContent = question;
+        
+        document.getElementById("a1").value = answer1.text;
+
+        document.getElementById("a2").value = answer2.text;
+
+        document.getElementById("a3").value = answer3.text;
+        
+        document.getElementById("a4").value = answer4.text;
+
+
+        document.getElementById("questionImage").src.question.image;
+
+        })
+
+        .catch(function (error){
+            console.error("Could not load the JSON:", error);
+        })
+
+    </script>
+</body>
+</html>

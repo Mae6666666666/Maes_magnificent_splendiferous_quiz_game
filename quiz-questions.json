@@ -1,0 +1,37 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "text": "How old is Murdoc Niccals from Gorillaz currently?",
+      "image": null,
+      "answers": [
+        { "text": "60", "image": null, "correct": false },
+        { "text": "67", "image": null, "correct": true },
+        { "text": "69", "image": null, "correct": false },
+        { "text": "21", "image": null, "correct": false }
+      ]
+    },
+    {
+      "id": 2,
+      "text": "Which picture below is from the music video 'Humility'?",
+      "image": null,
+      "answers": [
+        { "text": null, "image": "https://example.com/saturnz-barz.jpg", "correct": false },
+        { "text": null, "image": "https://example.com/humility.jpg", "correct": true },
+        { "text": null, "image": "https://example.com/feel-good-inc.jpg", "correct": false },
+        { "text": null, "image": "https://example.com/clint-eastwood.jpg", "correct": false }
+      ]
+    },
+    {
+      "id": 3,
+      "text": "What phase is this image from?",
+      "image": "https://example.com/phase-image.jpg",
+      "answers": [
+        { "text": "Phase 1", "image": null, "correct": false },
+        { "text": "Phase 2", "image": null, "correct": true },
+        { "text": "Phase 3", "image": null, "correct": false },
+        { "text": "Phase 4", "image": null, "correct": false }
+      ]
+    }
+  ]
+}
