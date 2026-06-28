@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
     
 </head>
 <body class="bg-[url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVwVOX33CP_VlJFItU4EiL0CdPOK0q6uPl7g&s)] bg-cover">
     <header class="bg-zinc-800 h-26">
-        <h1 class="text-white text-5xl font-mono">Name of the quiz</h1>
+        <h1 class="text-white text-5xl">Name of the quiz</h1>
     </header>
     <header class="bg-zinc-700">
-        <h1 id="question" class="text-white font-mono text-2xl">Question</h1>
+        <h1 id="question" class="text-white text-2xl">Question</h1>
     </header>
     <br>
     <div>
-        <h3 class="text-white font-mono text-right">x/y question</h3>
+        <h3 class="text-white text-right">x/y question</h3>
     </div>
     <br>
     <br>
@@ -25,17 +26,8 @@
     <br>
 
     <label>
-        <div class="text-center">
-            <input class="text-white font-mono bg-blue-950 text-3xl" id="a1" type="submit" name="selection" value="answer 1">
-            <br>
-            <br>
-            <input class="text-white font-mono bg-blue-950 text-3xl" id="a2" type="submit" name="selection" value="answer 2">
-            <br>
-            <br>
-            <input class="text-white font-mono bg-blue-950 text-3xl" id="a3" type="submit" name="selection" value="answer 3">
-            <br>
-            <br>
-            <input class="text-white font-mono bg-blue-950 text-3xl" id="a4" type="submit" name="selection" value="answer 4">
+        <div id="answers" class="sans-font flex flex-col items-center gap-3">
+            
         </div>
     </label>
     <script>
@@ -44,24 +36,59 @@
                 return response.json();
             })
         .then(function(data){
-            var answer1 = data.questions[2].answers[0];
-            var answer2 = data.questions[2].answers[1];
-            var answer3 = data.questions[2].answers[2];
-            var answer4 = data.questions[2].answers[3];
-            var question = data.questions[2].text;
+            var question = data.questions[1];
         
-        document.getElementById("question").textContent = question;
+        var question_element = document.getElementById("question");
+
+        question_element.textContent = question.text;
+
+        if (question.image){
+
+        var img = document.createElement("img")
+        img.src = question.image;
         
-        document.getElementById("a1").value = answer1.text;
-
-        document.getElementById("a2").value = answer2.text;
-
-        document.getElementById("a3").value = answer3.text;
+        question_element.appendChild(img)
+        }
         
-        document.getElementById("a4").value = answer4.text;
+
+        var answersBox = document.getElementById("answers")
+
+        answersBox.innerHTML = "";
+
+        question.answers.forEach(addButtons);
+
+        function addButtons(answer) {
+            if (answer.text){
+
+            var button = document.createElement("input");
+            button.type = "submit";
+            button.value = answer.text;
+            button.id = answer.correct
+            button.addEventListener("click", buttonPressed);
+            
+            button.className = "text-white font-mono bg-blue-950 text-3xl block mx-auto my-2";
 
 
-        document.getElementById("questionImage").src.question.image;
+            answersBox.appendChild(button);
+            }
+            
+            if (answer.image){
+                var img = document.createElement("img")
+                img.src = answer.image;
+
+                answersBox.appendChild(img)
+
+            }
+        }
+
+        function buttonPressed(event){
+            button = event.currentTarget
+            alert("id = " +button.id)
+        }
+        
+
+
+        // document.getElementById("questionImage").src.question.image;
 
         })
 

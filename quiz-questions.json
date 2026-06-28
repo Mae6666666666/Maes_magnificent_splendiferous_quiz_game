@@ -25,12 +25,24 @@
     {
       "id": 3,
       "text": "What phase is this image from?",
-      "image": "https://example.com/phase-image.jpg",
+      "image": "https://pbs.twimg.com/media/Gqiq1jFbcAAqL_k.jpg",
       "answers": [
         { "text": "Phase 1", "image": null, "correct": false },
         { "text": "Phase 2", "image": null, "correct": true },
         { "text": "Phase 3", "image": null, "correct": false },
-        { "text": "Phase 4", "image": null, "correct": false }
+        { "text": "Phase 4", "image": null, "correct": false },
+        { "text": "Phase 5", "image": null, "correct": false }
+      ]
+    },
+    {
+      "id": 4,
+      "text": "Which picture below is from the music video 'Humility'?",
+      "image": null,
+      "answers": [
+        { "text": null, "image": "https://i.ytimg.com/vi/lVaBvyzuypw/maxresdefault.jpg", "correct": false },
+        { "text": null, "image": "https://i.ytimg.com/vi/E5yFcdPAGv0/hqdefault.jpg", "correct": true },
+        { "text": null, "image": "https://i.redd.it/just-noticed-this-on-the-clint-eastwood-video-is-it-a-v0-x9vnn09l3fs71.jpg?width=976&format=pjpg&auto=webp&s=55ce20df75b22cfaabe624c1c8efea0bb3d4d16e", "correct": false },
+        { "text": null, "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXrqbkqFOgMSkq0uEBRucTZIxDjY6YKXS-Gw&s", "correct": false }
       ]
     }
   ]
