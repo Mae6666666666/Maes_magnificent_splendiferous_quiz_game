@@ -27,81 +27,34 @@
     <br />
     <br />
 
-    <label>
-      <div
-        id="answers"
-        class="sans-font flex flex-col items-center gap-3"
-      ></div>
-    </label>
+    <div id="answers" class="sans-font flex flex-col items-center gap-3"></div>
+
     <script>
+      let LOCAL_STORED_ANSWERS = "localStoredAnswers";
+
       localStorage.setItem("currentQ", 0);
+      var storedAnswers = [];
+      localStorage.setItem(LOCAL_STORED_ANSWERS, JSON.stringify(storedAnswers));
+
       var questions = {};
       fetch("quiz-questions.json") //5s
         .then(function (response) {
           return response.json();
         })
         .then(function (data) {
+          aLog("loadQuestionswhy");
           questions = data.questions;
 
           let currentQ = localStorage.getItem("currentQ");
           displayQuestion(currentQ);
-
-          // var question_element = document.getElementById("question");
-
-          // question_element.textContent = question.text;
-
-          // if (question.image) {
-          //   var img = document.createElement("img");
-          //   img.src = question.image;
-
-          //   question_element.appendChild(img);
-          // }
+          displayAnswers(currentQ);
 
           var question = questions[currentQ];
-          var answersBox = document.getElementById("answers");
-
-          answersBox.innerHTML = "";
-
-          function addButtons(answer) {
-            if (answer.text) {
-              var button = document.createElement("input");
-              button.type = "submit";
-              button.value = answer.text;
-              button.id = answer.correct;
-              button.addEventListener("click", buttonPressed);
-
-              button.className =
-                "text-white font-mono bg-blue-950 text-3xl block mx-auto my-2";
-
-              answersBox.appendChild(button);
-            }
-
-            if (answer.image) {
-              var img = document.createElement("img");
-              img.src = answer.image;
-
-              answersBox.appendChild(img);
-            }
-          }
-          var just2BDificult = addButtons;
-          var extraPain = just2BDificult;
-          question.answers.forEach(extraPain);
-
-          function buttonPressed(event) {
-            button = event.currentTarget;
-            alert("id = " + button.id);
-          }
         })
 
         .catch(function (error) {
           console.error("Could not load the JSON:", error);
         });
-
-      // function add(num1, num2) {
-      //   total = num1 + num2;
-      //   alert(total);
-      // }
-      // add(2, 1);
 
       function displayQuestion(questionNumber) {
         var question = questions[questionNumber];
@@ -119,38 +72,63 @@
       }
 
       function displayAnswers(answerQNumber) {
+        aLog("displayAnswers");
+        var question = questions[answerQNumber];
         var answersBox = document.getElementById("answers");
 
         answersBox.innerHTML = "";
 
-        function addButtons(answer) {
-          if (answer.text) {
-            var button = document.createElement("input");
-            button.type = "submit";
-            button.value = answer.text;
-            button.id = answer.correct;
-            button.addEventListener("click", buttonPressed);
-
-            button.className =
-              "text-white font-mono bg-blue-950 text-3xl block mx-auto my-2";
-
-            answersBox.appendChild(button);
-          }
-
-          if (answer.image) {
-            var img = document.createElement("img");
-            img.src = answer.image;
-
-            answersBox.appendChild(img);
-          }
-        }
-
         question.answers.forEach(addButtons);
+      }
 
-        function buttonPressed(event) {
-          button = event.currentTarget;
-          alert("id = " + button.id);
+      function addButtons(answer) {
+        var answersBox = document.getElementById("answers");
+
+        if (answer.text) {
+          var button = document.createElement("input");
+          button.type = "submit";
+          button.value = answer.text;
+          button.id = answer.correct;
+          //button.addEventListener("click", buttonPressed);
+          button.onclick = buttonPressed;
+          button.className =
+            "text-white font-mono bg-blue-950 text-3xl block mx-auto my-2";
+
+          answersBox.appendChild(button);
         }
+
+        if (answer.image) {
+          var img = document.createElement("img");
+          img.onclick = buttonPressed;
+          img.src = answer.image;
+
+          answersBox.appendChild(img);
+        }
+      }
+
+      function buttonPressed(event) {
+        aLog("buttonPressed");
+        let currentQ = Number(localStorage.getItem("currentQ"));
+        currentQ += 1;
+        if (Number(currentQ) <= questions.length -1) {
+          button = event.currentTarget;
+          var localDataStr = localStorage.getItem(LOCAL_STORED_ANSWERS);
+          var localDataArr = JSON.parse(localDataStr);
+          localDataArr.push(button.id);
+          localStorage.setItem(
+            LOCAL_STORED_ANSWERS,
+            JSON.stringify(localDataArr),
+          );
+          localStorage.setItem("currentQ", currentQ);
+          alert("next q number: " + currentQ);
+          displayQuestion(currentQ);
+          displayAnswers(currentQ);
+        } else {
+          window.location.href = "summary.html";
+        }
+      }
+      function aLog(msg) {
+        console.log(msg);
       }
     </script>
   </body>

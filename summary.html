@@ -1,33 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Your Score!</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <br>
-        <h1>Your Summary</h1>
-        <br>
+      <br />
+      <h1>Your Summary</h1>
+      <br />
     </header>
-    <br>
+    <br />
     <div class="general-container">
-        <img src="https://www.shutterstock.com/shutterstock/videos/3999148415/thumb/2.jpg?ip=x480" alt="confetti" class="small-img" >
-        <h2 class="centre-aligning">
-        You scored {score} out of {total}!
-    </h2>
+      <img
+        src="https://www.shutterstock.com/shutterstock/videos/3999148415/thumb/2.jpg?ip=x480"
+        alt="confetti"
+        class="small-img"
+      />
+      <h2 class="centre-aligning">You scored {score} out of {total}!</h2>
     </div>
-    
-    <br>
+
+    <br />
 
     <footer>
-        <p>
-        Wanna retake the quiz? click <a href="index.html">here!</a>
-    </p>
+      <p>Wanna retake the quiz? click <a href="index.html">here!</a></p>
     </footer>
-    
-    
-</body>
+    <script>
+      let LOCAL_STORED_ANSWERS = "localStoredAnswers";
+
+      //Reading from local storage
+      var whatEverYouWantToCallItAsAString =
+        localStorage.getItem(LOCAL_STORED_ANSWERS);
+      var myArray = JSON.parse(whatEverYouWantToCallItAsAString);
+      aLog(myArray);
+
+    //   whatEverYouWantToCallIt = localStorage.getItem(LOCAL_STORED_ANSWERS);
+
+      function aLog(msg) {
+        console.log(msg);
+      }
+    </script>
+  </body>
 </html>
