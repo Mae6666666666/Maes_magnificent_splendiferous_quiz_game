@@ -101,7 +101,7 @@
           var img = document.createElement("img");
           img.onclick = buttonPressed;
           img.src = answer.image;
-
+          img.id = answer.correct;
           answersBox.appendChild(img);
         }
       }
@@ -110,22 +110,24 @@
         aLog("buttonPressed");
         let currentQ = Number(localStorage.getItem("currentQ"));
         currentQ += 1;
-        if (Number(currentQ) <= questions.length -1) {
-          button = event.currentTarget;
-          var localDataStr = localStorage.getItem(LOCAL_STORED_ANSWERS);
-          var localDataArr = JSON.parse(localDataStr);
-          localDataArr.push(button.id);
-          localStorage.setItem(
-            LOCAL_STORED_ANSWERS,
-            JSON.stringify(localDataArr),
-          );
-          localStorage.setItem("currentQ", currentQ);
-          alert("next q number: " + currentQ);
-          displayQuestion(currentQ);
-          displayAnswers(currentQ);
+        button = event.currentTarget;
+        var localDataStr = localStorage.getItem(LOCAL_STORED_ANSWERS);
+        var localDataArr = JSON.parse(localDataStr);
+        localDataArr.push(button.id);
+        localStorage.setItem(
+          LOCAL_STORED_ANSWERS,
+          JSON.stringify(localDataArr),
+        );
+        if (Number(currentQ) <= questions.length - 1) {
         } else {
           window.location.href = "summary.html";
+          return;
         }
+
+        localStorage.setItem("currentQ", currentQ);
+        alert("next q number: " + currentQ);
+        displayQuestion(currentQ);
+        displayAnswers(currentQ);
       }
       function aLog(msg) {
         console.log(msg);

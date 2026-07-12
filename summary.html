@@ -19,7 +19,9 @@
         alt="confetti"
         class="small-img"
       />
-      <h2 class="centre-aligning">You scored {score} out of {total}!</h2>
+      <h2 id="totalScore" class="centre-aligning">
+        You scored {score} out of {total}!
+      </h2>
     </div>
 
     <br />
@@ -36,7 +38,13 @@
       var myArray = JSON.parse(whatEverYouWantToCallItAsAString);
       aLog(myArray);
 
-    //   whatEverYouWantToCallIt = localStorage.getItem(LOCAL_STORED_ANSWERS);
+      displayScore(myArray.length);
+      function displayScore(total) {
+        htmlElement = document.getElementById("totalScore");
+        htmlElement.innerText = "you got ?? out of " + total;
+      }
+
+      //   whatEverYouWantToCallIt = localStorage.getItem(LOCAL_STORED_ANSWERS);
 
       function aLog(msg) {
         console.log(msg);
