@@ -19,7 +19,7 @@
     </header>
     <br />
     <div>
-      <h3 class="text-white text-right">x/y question</h3>
+      <h3 id="questionCount" class="text-white text-right">x/y quest. ion</h3>
     </div>
     <br />
     <br />
@@ -50,6 +50,7 @@
           displayAnswers(currentQ);
 
           var question = questions[currentQ];
+          questionTracker(1);
         })
 
         .catch(function (error) {
@@ -72,13 +73,15 @@
       }
 
       function displayAnswers(answerQNumber) {
-        aLog("displayAnswers");
+        // aLog("displayAnswers");
         var question = questions[answerQNumber];
+
         var answersBox = document.getElementById("answers");
 
         answersBox.innerHTML = "";
 
         question.answers.forEach(addButtons);
+        //console.log("totalQuestions: " + totalQuestions);
       }
 
       function addButtons(answer) {
@@ -105,11 +108,17 @@
           answersBox.appendChild(img);
         }
       }
+      // get length of list which is question!!!
+      // let currentQCount = 0
+      // let totalQuestions = length of the list containing questions
 
-      function buttonPressed(event) {
-        aLog("buttonPressed");
+      function buttonPressed(event, totalQuestions) {
+        // aLog("buttonPressed");
         let currentQ = Number(localStorage.getItem("currentQ"));
         currentQ += 1;
+        console.log("currentQ: " + currentQ);
+        questionTracker(currentQ + 1);
+
         button = event.currentTarget;
         var localDataStr = localStorage.getItem(LOCAL_STORED_ANSWERS);
         var localDataArr = JSON.parse(localDataStr);
@@ -123,11 +132,17 @@
           window.location.href = "summary.html";
           return;
         }
+        // console.log("Current q: " + currentQ);
 
         localStorage.setItem("currentQ", currentQ);
-        alert("next q number: " + currentQ);
+
         displayQuestion(currentQ);
         displayAnswers(currentQ);
+      }
+      function questionTracker(questionCurrent) {
+        let totalQuestions = questions.length;
+        questionCount = document.getElementById("questionCount");
+        questionCount.innerText = questionCurrent + "/" + totalQuestions;
       }
       function aLog(msg) {
         console.log(msg);

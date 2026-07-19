@@ -38,10 +38,19 @@
       var myArray = JSON.parse(whatEverYouWantToCallItAsAString);
       aLog(myArray);
 
-      displayScore(myArray.length);
-      function displayScore(total) {
+      let correct = 0;
+      myArray.forEach((element) => {
+        if (element == "true") {
+          correct += 1;
+        }
+        console.log("element: " + element);
+      });
+      console.log("Correct: " + correct);
+
+      displayScore(myArray.length, correct);
+      function displayScore(total, correct) {
         htmlElement = document.getElementById("totalScore");
-        htmlElement.innerText = "you got ?? out of " + total;
+        htmlElement.innerText = "you got " + correct + " out of " + total;
       }
 
       //   whatEverYouWantToCallIt = localStorage.getItem(LOCAL_STORED_ANSWERS);
